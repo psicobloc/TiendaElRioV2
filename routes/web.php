@@ -17,6 +17,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/caja', function () {
+  $productos = \App\Producto::all();
+
+    return view('caja', ['productos' => $productos]);
+});
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
