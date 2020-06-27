@@ -12,7 +12,7 @@
       <div class="sidebar-wrapper">
         <ul class="nav">
           <li class="nav-item active  ">
-            <a class="nav-link" href="{{ url('/demo') }}">
+            <a class="nav-link" href="{{ url('/admin') }}">
               <i class="material-icons">dashboard</i>
               <p>Dashboard</p>
             </a>
@@ -25,7 +25,7 @@
             </a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="{{ url('/productos') }}"> <!-- poner ruta tipo laravel @'/productos' o algo asi -->
+            <a class="nav-link" href="{{ url('/prod') }}"> <!-- poner ruta tipo laravel @'/productos' o algo asi -->
               <i class="material-icons">content_paste</i>
               <p>Productos</p>
             </a>

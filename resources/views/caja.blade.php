@@ -86,7 +86,7 @@
 
                 <div class="links">
                   @foreach ($productos as $prod)
-                    <a>{{ $prod->nombre }} - ${{ $prod->precio }}</a> 
+                    <a>{{ $prod->nombre }} - ${{ $prod->precio }}</a>
                   @endforeach
                 </div>
             </div>

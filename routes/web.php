@@ -23,6 +23,12 @@ Route::get('/caja', function () {
     return view('caja', ['productos' => $productos]);
 });
 
+Route::get('/prod', function () {
+  $productos = \App\Producto::all();
+
+    return view('prod', ['productos' => $productos]);
+});
+
 Route::get('/historial', function () {
     return view('historial');
 });
