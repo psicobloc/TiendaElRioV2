@@ -23,6 +23,10 @@ Route::get('/caja', function () {
     return view('caja', ['productos' => $productos]);
 });
 
+Route::get('/historial', function () {
+    return view('historial');
+});
+
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
