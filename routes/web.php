@@ -25,8 +25,9 @@ Route::get('/caja', function () {
 
 Route::get('/prod', function () {
   $productos = \App\Producto::all();
+  $categorias = \App\Categoria::all();
 
-    return view('prod', ['productos' => $productos]);
+    return view('prod', ['productos' => $productos], ['categorias' => $categorias]);
 });
 
 Route::get('/historial', function () {
