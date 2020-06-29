@@ -9,11 +9,6 @@ try {
 } catch (Exception $e) {
 
   $user_id = 1000;
-  echo '<script language="javascript">';
-  echo 'alert("No tienes autoriazación para ver esta página.")';
-  echo '</script>';
-  echo "<meta http-equiv=". "refresh" ." content=" . "0;URL=" . '/admin' . ">";
-
 }
   if ($user_id < 4):
 ?>
