@@ -11,153 +11,116 @@ try {
 <script type="text/javascript">
 var cat = <?php echo json_encode($categorias); ?>;
 var prod = <?php echo json_encode($productos); ?>;
-document.write(cat[7].nombre_categoria);
-document.write(prod[0].id_categoria);
+//document.write(cat[7].nombre_categoria);
+//document.write(prod[0].id_categoria);
 </script>
 
-<select id="select_categorias" onchange="ChangeCatList()">
+<!-- <select id="select_categorias" onchange="ChangeCatList()">
   <option value="">-- Categorias --</option>
   @foreach ($categorias as $categoria)
-  <option value="{{$categoria->id}}">{{$categoria->nombre_categoria}}</option>
+  <option value= "{{$categoria->id}}" >{{$categoria->nombre_categoria}}</option>
   @endforeach
 </select>
-<select id="select_productos"></select>
+<select id="select_productos"></select> -->
 
 <script>
-var productosPorCat = {};
-cat.forEach(function(item, index){
-var catID = item.id;
-productosPorCat[catID] = [];
+// var productosPorCat = {}
+//
+// for (var j = 0; j < prod.length; j++) {
+//   productosPorCat[prod[j].id_categoria].push(prod[j].nombre);
+// }
+
+// var productosPorCat = {};
+// cat.forEach(function(item, index){
+// var catID = item.id;
+// productosPorCat[catID] = [];
 
 //falso, son dos tablas diferentes.
   // item.forEach(function(itemP, indexP){
   // productosPorCat[catID].push(itemP.nombre);
   // });
 
-});
+// });
 
 //mas bien: por cada producto, agregarlo a productosPorCat[producto->id_categoria].push(producto)
 
-var productosPorCat = {};
-carsAndModels['VO'] = ['V70', 'XC60', 'XC90'];
-carsAndModels['VW'] = ['Golf', 'Polo', 'Scirocco', 'Touareg'];
-carsAndModels['BMW'] = ['M6', 'X5', 'Z3'];
+// var productosPorCat = {};
+// carsAndModels['VO'] = ['V70', 'XC60', 'XC90'];
+// carsAndModels['VW'] = ['Golf', 'Polo', 'Scirocco', 'Touareg'];
+// carsAndModels['BMW'] = ['M6', 'X5', 'Z3'];
 
 function ChangeCatList() {
+  var productosPorCat = {}
+
+  for (var j = 0; j < prod.length; j++) {
+    productosPorCat[prod[j].id_categoria].push(prod[j].nombre);
+  }
+
   var catList = document.getElementById("select_categorias");
   var prodList = document.getElementById("select_productos");
   var catID = catList.options[catList.selectedIndex].value;
   while (prodList.options.length) {
     prodList.remove(0);
   }
-
-
-  var producto_seleccionado = carsAndModels[selCar];
-  if (cars) {
+  var producto_seleccionado = productosPorCat[catID];
+  if (producto_seleccionado) {
     var i;
-    for (i = 0; i < cars.length; i++) {
-      var car = new Option(cars[i], i);
-      modelList.options.add(car);
+    for (i = 0; i < producto_seleccionado.length; i++) {
+      var opcionProd = new Option(producto_seleccionado[i], i);
+      prodList.options.add(opcionProd);
     }
   }
 }
 </script>
 
-
-
+<body class="dark-edition">
 <div class="col-md-8">
-<div class="card">
-  <div class="card-header card-header-primary">
-    <h4 class="card-title">Seleccionar productos</h4>
-    <p class="card-category">Complete todos los campos</p>
-  </div>
-  <div class="card-body">
-    <form>
-      <div class="row">
-        <div class="col-md-5">
-          <div class="form-group bmd-form-group">
-            <select id="select_categorias" onchange="ChangeCatList()">
-              <option value="">-- Categorias --</option>
-              @foreach ($categorias as $categoria)
-              <option value="{{$categoria->id}}">{{$categoria->nombre_categoria}}</option>
-              @endforeach
-            </select>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="form-group bmd-form-group">
-            <label class="bmd-label-floating">Username</label>
-            <input type="text" class="form-control">
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="form-group bmd-form-group">
-            <label class="bmd-label-floating">Email address</label>
-            <input type="email" class="form-control">
-          </div>
-        </div>
+  <form action="/submit" method="post">
+
+    <div class="card">
+      <div class="card-header card-header-primary">
+        <h4 class="card-title">Seleccionar productos</h4>
+        <p class="card-category">Complete todos los campos</p>
       </div>
-      <div class="row">
-        <div class="col-md-6">
-          <div class="form-group bmd-form-group">
-            <label class="bmd-label-floating">Fist Name</label>
-            <input type="text" class="form-control">
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="form-group bmd-form-group">
-            <label class="bmd-label-floating">Last Name</label>
-            <input type="text" class="form-control">
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-          <div class="form-group bmd-form-group">
-            <label class="bmd-label-floating">Adress</label>
-            <input type="text" class="form-control">
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-4">
-          <div class="form-group bmd-form-group">
-            <label class="bmd-label-floating">City</label>
-            <input type="text" class="form-control">
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="form-group bmd-form-group">
-            <label class="bmd-label-floating">Country</label>
-            <input type="text" class="form-control">
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="form-group bmd-form-group">
-            <label class="bmd-label-floating">Postal Code</label>
-            <input type="text" class="form-control">
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-          <div class="form-group">
-            <label>About Me</label>
-            <div class="form-group bmd-form-group">
-              <label class="bmd-label-floating"> Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</label>
-              <textarea class="form-control" rows="5"></textarea>
+      <div class="card-body">
+        <form>
+          <div class="row">
+            <div class="col-md-5">
+              <div class="form-group bmd-form-group">
+                Producto:
+                <select id="select_productos" class="form-control @error('select_productos') is-invalid @enderror" name="select_productos" value="{{ old('select_productos') }}">
+                  @foreach ($productos as $producto)
+                  <option value="{{$producto->id}}">{{$producto->nombre}}</option>
+                  @endforeach
+                </select>
+                @error('select_productos')
+                        <div class="Producto inválido">{{ $message }}</div>
+                    @enderror
+              </div>
             </div>
+            <div class="col-md-3">
+              <div class="form-group bmd-form-group">
+                <label class="bmd-label-floating">cantidad</label>
+                <input type="number" step="1" min="1" class="form-control @error('cantidad') is-invalid @enderror" id="cantidad" name="cantidad" value="{{ old('cantidad') }}">
+                @error('cantidad')
+                        <div class="cantidad invalida">{{ $message }}</div>
+                    @enderror
+              </div>
+            </div>
+            <div class="col-md-4">
+              <a class="btn btn-primary btn-round"> Agregar </a>
+           </div>
           </div>
-        </div>
+          <button type="submit" class="btn btn-primary pull-right">Terminar venta</button>
+          <div class="clearfix"></div>
+        </form>
       </div>
-      <button type="submit" class="btn btn-primary pull-right">Update Profile</button>
-      <div class="clearfix"></div>
-    </form>
-  </div>
-</div>
+    </div>
+
+  </form>
 </div>
 
-
+</body>
 
 
 
