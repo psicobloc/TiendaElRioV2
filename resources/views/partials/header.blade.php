@@ -25,7 +25,7 @@
           </li>
           <li class="nav-item ">
             <a class="nav-link" href="{{ url('/prod') }}">
-              <i class="material-icons">content_paste</i>
+              <i class="material-icons">view_list</i>
               <p>Productos</p>
             </a>
           </li>
