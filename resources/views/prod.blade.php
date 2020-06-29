@@ -15,7 +15,6 @@
       <table class="table">
 
         <?php
-
         try {
           $user_id = auth()->user()->role->id;
 
@@ -23,7 +22,7 @@
 
           $user_id = 1000;
           echo '<script language="javascript">';
-          echo 'alert("No tienes autoriazación para ver esta tabla.")';
+          echo 'alert("No tienes autoriazación para ver esta página.")';
           echo '</script>';
           echo "<meta http-equiv=". "refresh" ." content=" . "0;URL=" . '/admin' . ">";
 
@@ -70,7 +69,7 @@
           <?php else: ?>
 
             <script language="javascript">
-            alert("No tienes autoriazación para ver esta tabla.")
+            alert("No tienes autoriazación para ver esta página.")
             </script>
             <meta http-equiv="refresh" content="0; URL='/admin'"/>
 

@@ -17,19 +17,31 @@
               <p>Dashboard</p>
             </a>
           </li>
-          <!-- your sidebar here -->
           <li class="nav-item ">
-            <a class="nav-link" href="javascript:void(0)">
-              <i class="material-icons">person</i>
-              <p>Perfil</p>
+            <a class="nav-link" href="{{ url('/caja') }}">
+              <i class="material-icons">add_shopping_cart</i>
+              <p>Venta nueva</p>
             </a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="{{ url('/prod') }}"> <!-- poner ruta tipo laravel @'/productos' o algo asi -->
+            <a class="nav-link" href="{{ url('/prod') }}">
               <i class="material-icons">content_paste</i>
               <p>Productos</p>
             </a>
           </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="{{ url('/historial') }}">
+              <i class="material-icons">event</i>
+              <p>Historial de ventas</p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="javascript:void(0)">
+              <i class="material-icons">print</i>
+              <p>Tickets</p>
+            </a>
+          </li>
+
 
         </ul>
       </div>
