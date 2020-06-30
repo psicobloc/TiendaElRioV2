@@ -90,8 +90,9 @@ function ChangeCatList() {
                 Producto:
                 <select id="select_productos" class="form-control @error('select_productos') is-invalid @enderror" name="select_productos" value="{{ old('select_productos') }}">
                   @foreach ($productos as $producto)
-                  <option value="{{$producto->id}}">{{$producto->nombre}}</option>
+                  <option value='{{$producto->id}},{{$producto->precio}}'>{{$producto->nombre}}</option>
                   @endforeach
+
                 </select>
                 @error('select_productos')
                         <div class="Producto inválido">{{ $message }}</div>
@@ -109,18 +110,27 @@ function ChangeCatList() {
             </div>
             <div class="col-md-4">
               <a onclick="add()" class="btn btn-primary btn-round"> Agregar </a>
+              <a class="btn btn-primary btn-round" style="background-color:#394cb7" href="/caja"> limpiar </a>
 
               <script type="text/javascript">
 
                 function add() {
                   var e = document.getElementById("select_productos");
-                  var result = e.options[e.selectedIndex].text;
+                  var cant = document.getElementById("cantidad");
+                  var cantidadSel = cant.value;
+
+                  var textResult = e.options[e.selectedIndex].text;
+                  var idProductoSel = e.options[e.selectedIndex].value.split(',')[0];
+                  var selectedPrice = e.options[e.selectedIndex].value.split(',')[1];
+                  var totalSelected = cantidadSel * selectedPrice;
+
+                  var registroVenta =  " - " + textResult + " - " + " cantidad: " + cantidadSel + " - " + "Precio: $" + selectedPrice +  " - " + "total: $" + totalSelected;
                   console.log("add");
                   // var mydiv = document.getElementById("listaP");
                   // mydiv.appendChild(document.createTextNode(result));
 
                   var newpara = document.createElement("P");
-                  newpara.innerHTML = result;
+                  newpara.innerHTML = registroVenta;
                   document.getElementById("listaP").appendChild(newpara);
                   mydiv.appendChild(newpara);
 
