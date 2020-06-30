@@ -15,8 +15,8 @@ var prod = <?php echo json_encode($productos); ?>;
 var users = <?php $users = \App\User::all(); echo json_encode($users); ?>;
 var user_name = <?php echo json_encode($user_name); ?>;
 var user_id = <?php echo json_encode($user_id); ?>;
-var arregloVenta = {};
-var contadorProd = 0;
+
+
 var totalVenta = 0;
 //document.write(cat[7].nombre_categoria);
 //document.write(prod[0].id_categoria);
@@ -71,6 +71,9 @@ var totalVenta = 0;
               <a class="btn btn-primary btn-round" style="background-color:#394cb7; margin-left: 70px" href="/caja"> limpiar </a>
 
               <script type="text/javascript">
+              var arregloVenta = [];
+              var contadorProd = 0;
+
                 function add() {
                   var e = document.getElementById("select_productos");
                   var cant = document.getElementById("cantidad");
@@ -90,23 +93,50 @@ var totalVenta = 0;
                   // var mydiv = document.getElementById("listaP");
                   // mydiv.appendChild(document.createTextNode(result));
 
+                  contadorProd = contadorProd +1;
+
+                  var seleccionArr = [idProductoSel,cantidadSel,totalSelected];
+
+                  arregloVenta.push(seleccionArr);
+
                   var newpara = document.createElement("P");
                   newpara.innerHTML = registroVenta;
                   document.getElementById("listaP").appendChild(newpara);
                   mydiv.appendChild(newpara);
 
-                  contadorProd += 1;
-                  arregloVenta[contadorProd] = [idProductoSel,cantidadSel,totalSelected];
                 }//add()
 
 
                 function cargar(){
 
+                  // mandar arregloVenta a php y desde ahí modificar la BD
 
 
 
 
-                  
+
+                  //*************** esto es node.js, server side, no funciona en javascript
+                  // var mysql = require('mysql');
+                  //
+                  // var con = mysql.createConnection({
+                  //   host: "217.0.0.1",
+                  //   port:"3306",
+                  //   user: "vendedor",
+                  //   password: "okboomer",
+                  //   database: "tienda"
+                  // });
+                  //
+                  // con.connect(function(err) {
+                  //   if (err) throw err;
+                  //   console.log("Connected!");
+                  //   var sql = "INSERT INTO tablapruebas (id_prod, id_usuario, precio_prod, cantidad_prod, total) VALUES (2,1,9.5,2,19)";
+                  //   con.query(sql, function (err, result) {
+                  //     if (err) throw err;
+                  //     console.log("1 record inserted");
+                  //   });
+                  // });
+
+
 
 
 
