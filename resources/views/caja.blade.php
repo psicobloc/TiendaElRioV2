@@ -114,7 +114,7 @@ function ChangeCatList() {
 
                 function add() {
                   var e = document.getElementById("select_productos");
-                  var result = e.options[e.selectedIndex].value;
+                  var result = e.options[e.selectedIndex].text;
                   console.log("add");
                   // var mydiv = document.getElementById("listaP");
                   // mydiv.appendChild(document.createTextNode(result));
@@ -156,25 +156,9 @@ function ChangeCatList() {
            </div>
           </div>
             <div class="row">
-
               <blockquote class="blockquote">
-
               <p id="listaP">Productos Elegidos: <br>   </p>
-
-
               </blockquote>
-
-              <script type="text/javascript">
-                var e = document.getElementById("select_productos");
-                  var result = e.options[e.selectedIndex].value;
-                //document.getElementById("listaP").innerHTML = result;
-
-
-
-              </script>
-
-
-
             </div>
           <button type="submit" class="btn btn-primary pull-right">Terminar venta</button>
           <div class="clearfix"></div>
