@@ -115,13 +115,67 @@ function ChangeCatList() {
                 function add() {
                   var e = document.getElementById("select_productos");
                   var result = e.options[e.selectedIndex].value;
-                  alert(result);
+                  console.log("add");
+                  // var mydiv = document.getElementById("listaP");
+                  // mydiv.appendChild(document.createTextNode(result));
+
+                  var newpara = document.createElement("P");
+                  newpara.innerHTML = result;
+                  document.getElementById("listaP").appendChild(newpara);
+                  mydiv.appendChild(newpara);
+
+
+                  //var newContent = document.createElement('div');
+                  //newContent.innerHTML = result;
+
+                  // while (newcontent.firstChild) {
+                  //   mydiv.appendChild(newcontent.firstChild);
+                  // }
+
+                  //document.getElementById("listaP").innerHTML = result;
+                  // document.write(result);
+
+                  <?php
+
+                    // $productos = \App\Producto::all();
+                    //
+                    //
+                    // foreach ($productos as $prod) {
+                    //   if ($prod->id == 2) {
+                    //     echo "console.log({$prod})";
+                    //     echo "blah blah";
+                    //   }
+                    //
+                    // }
+
+                   ?>
                 }
 
               </script>
 
            </div>
           </div>
+            <div class="row">
+
+              <blockquote class="blockquote">
+
+              <p id="listaP">Productos Elegidos: <br>   </p>
+
+
+              </blockquote>
+
+              <script type="text/javascript">
+                var e = document.getElementById("select_productos");
+                  var result = e.options[e.selectedIndex].value;
+                //document.getElementById("listaP").innerHTML = result;
+
+
+
+              </script>
+
+
+
+            </div>
           <button type="submit" class="btn btn-primary pull-right">Terminar venta</button>
           <div class="clearfix"></div>
         </form>
@@ -129,6 +183,7 @@ function ChangeCatList() {
     </div>
 
   </form>
+
 </div>
 
 </body>
