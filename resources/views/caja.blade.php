@@ -4,6 +4,7 @@
 <?php
 try {
   $user_id = auth()->user()->role->id;
+  $user_name = auth()->user()->name;
 } catch (Exception $e) {
   $user_id = 1000;}
   if ($user_id < 4):
@@ -11,6 +12,9 @@ try {
 <script type="text/javascript">
 var cat = <?php echo json_encode($categorias); ?>;
 var prod = <?php echo json_encode($productos); ?>;
+var users = <?php $users = \App\User::all(); echo json_encode($users); ?>;
+var user_name = <?php echo json_encode($user_name); ?>;
+var user_id = <?php echo json_encode($user_id); ?>;
 //document.write(cat[7].nombre_categoria);
 //document.write(prod[0].id_categoria);
 </script>
@@ -83,6 +87,7 @@ function ChangeCatList() {
         <p class="card-category">Complete todos los campos</p>
       </div>
       <div class="card-body">
+        <?php   echo "<p id=\"verde\" class=\"text-success\"> Usuario " .  $user_name . "</p>" ; ?>
         <form>
           <div class="row">
             <div class="col-md-5">
@@ -110,9 +115,13 @@ function ChangeCatList() {
             </div>
             <div class="col-md-4">
               <a onclick="add()" class="btn btn-primary btn-round"> Agregar </a>
-              <a class="btn btn-primary btn-round" style="background-color:#394cb7" href="/caja"> limpiar </a>
+              <a class="btn btn-primary btn-round" style="background-color:#394cb7; margin-left: 70px" href="/caja"> limpiar </a>
 
               <script type="text/javascript">
+
+              var arregloVenta = {};
+              var contadorProd = 0;
+              var totalVenta = 0;
 
                 function add() {
                   var e = document.getElementById("select_productos");
@@ -123,6 +132,8 @@ function ChangeCatList() {
                   var idProductoSel = e.options[e.selectedIndex].value.split(',')[0];
                   var selectedPrice = e.options[e.selectedIndex].value.split(',')[1];
                   var totalSelected = cantidadSel * selectedPrice;
+                  totalVenta += totalSelected;
+                  document.getElementById("total").innerHTML = totalVenta;
 
                   var registroVenta =  " - " + textResult + " - " + " cantidad: " + cantidadSel + " - " + "Precio: $" + selectedPrice +  " - " + "total: $" + totalSelected;
                   console.log("add");
@@ -133,6 +144,9 @@ function ChangeCatList() {
                   newpara.innerHTML = registroVenta;
                   document.getElementById("listaP").appendChild(newpara);
                   mydiv.appendChild(newpara);
+
+                  contadorProd += 1;
+                  arregloVenta[contadorProd] = [idProductoSel,cantidadSel,totalSelected];
 
 
                   //var newContent = document.createElement('div');
@@ -170,6 +184,7 @@ function ChangeCatList() {
               <p id="listaP">Productos Elegidos: <br>   </p>
               </blockquote>
             </div>
+          <a class="text-warning">  Total:$  </a><?php   echo "<a id=\"total\" class=\"text-info\"> </a>" ; ?>
           <button type="submit" class="btn btn-primary pull-right">Terminar venta</button>
           <div class="clearfix"></div>
         </form>
