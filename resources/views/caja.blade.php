@@ -15,6 +15,9 @@ var prod = <?php echo json_encode($productos); ?>;
 var users = <?php $users = \App\User::all(); echo json_encode($users); ?>;
 var user_name = <?php echo json_encode($user_name); ?>;
 var user_id = <?php echo json_encode($user_id); ?>;
+var arregloVenta = {};
+var contadorProd = 0;
+var totalVenta = 0;
 //document.write(cat[7].nombre_categoria);
 //document.write(prod[0].id_categoria);
 </script>
@@ -26,56 +29,6 @@ var user_id = <?php echo json_encode($user_id); ?>;
   @endforeach
 </select>
 <select id="select_productos"></select> -->
-
-<script>
-// var productosPorCat = {}
-//
-// for (var j = 0; j < prod.length; j++) {
-//   productosPorCat[prod[j].id_categoria].push(prod[j].nombre);
-// }
-
-// var productosPorCat = {};
-// cat.forEach(function(item, index){
-// var catID = item.id;
-// productosPorCat[catID] = [];
-
-//falso, son dos tablas diferentes.
-  // item.forEach(function(itemP, indexP){
-  // productosPorCat[catID].push(itemP.nombre);
-  // });
-
-// });
-
-//mas bien: por cada producto, agregarlo a productosPorCat[producto->id_categoria].push(producto)
-
-// var productosPorCat = {};
-// carsAndModels['VO'] = ['V70', 'XC60', 'XC90'];
-// carsAndModels['VW'] = ['Golf', 'Polo', 'Scirocco', 'Touareg'];
-// carsAndModels['BMW'] = ['M6', 'X5', 'Z3'];
-
-function ChangeCatList() {
-  var productosPorCat = {}
-
-  for (var j = 0; j < prod.length; j++) {
-    productosPorCat[prod[j].id_categoria].push(prod[j].nombre);
-  }
-
-  var catList = document.getElementById("select_categorias");
-  var prodList = document.getElementById("select_productos");
-  var catID = catList.options[catList.selectedIndex].value;
-  while (prodList.options.length) {
-    prodList.remove(0);
-  }
-  var producto_seleccionado = productosPorCat[catID];
-  if (producto_seleccionado) {
-    var i;
-    for (i = 0; i < producto_seleccionado.length; i++) {
-      var opcionProd = new Option(producto_seleccionado[i], i);
-      prodList.options.add(opcionProd);
-    }
-  }
-}
-</script>
 
 <body class="dark-edition">
 <div class="col-md-8">
@@ -118,25 +71,22 @@ function ChangeCatList() {
               <a class="btn btn-primary btn-round" style="background-color:#394cb7; margin-left: 70px" href="/caja"> limpiar </a>
 
               <script type="text/javascript">
-
-              var arregloVenta = {};
-              var contadorProd = 0;
-              var totalVenta = 0;
-
                 function add() {
                   var e = document.getElementById("select_productos");
                   var cant = document.getElementById("cantidad");
                   var cantidadSel = cant.value;
-
+                  if (cant.value <1) {
+                    cantidadSel = 1;
+                  }
                   var textResult = e.options[e.selectedIndex].text;
                   var idProductoSel = e.options[e.selectedIndex].value.split(',')[0];
                   var selectedPrice = e.options[e.selectedIndex].value.split(',')[1];
                   var totalSelected = cantidadSel * selectedPrice;
+
                   totalVenta += totalSelected;
                   document.getElementById("total").innerHTML = totalVenta;
 
                   var registroVenta =  " - " + textResult + " - " + " cantidad: " + cantidadSel + " - " + "Precio: $" + selectedPrice +  " - " + "total: $" + totalSelected;
-                  console.log("add");
                   // var mydiv = document.getElementById("listaP");
                   // mydiv.appendChild(document.createTextNode(result));
 
@@ -147,33 +97,21 @@ function ChangeCatList() {
 
                   contadorProd += 1;
                   arregloVenta[contadorProd] = [idProductoSel,cantidadSel,totalSelected];
+                }//add()
 
 
-                  //var newContent = document.createElement('div');
-                  //newContent.innerHTML = result;
+                function cargar(){
 
-                  // while (newcontent.firstChild) {
-                  //   mydiv.appendChild(newcontent.firstChild);
-                  // }
 
-                  //document.getElementById("listaP").innerHTML = result;
-                  // document.write(result);
 
-                  <?php
 
-                    // $productos = \App\Producto::all();
-                    //
-                    //
-                    // foreach ($productos as $prod) {
-                    //   if ($prod->id == 2) {
-                    //     echo "console.log({$prod})";
-                    //     echo "blah blah";
-                    //   }
-                    //
-                    // }
 
-                   ?>
-                }
+                  
+
+
+
+
+                }//cargar()
 
               </script>
 
@@ -185,7 +123,8 @@ function ChangeCatList() {
               </blockquote>
             </div>
           <a class="text-warning">  Total:$  </a><?php   echo "<a id=\"total\" class=\"text-info\"> </a>" ; ?>
-          <button type="submit" class="btn btn-primary pull-right">Terminar venta</button>
+          <a class="btn btn-primary" style="background-color:#4fb739; margin-left: 750px" onclick="cargar()"> Terminar venta </a>
+          <!-- <button type="submit" class="btn btn-primary pull-right" onclick="cargar()">Terminar venta</button> -->
           <div class="clearfix"></div>
         </form>
       </div>
