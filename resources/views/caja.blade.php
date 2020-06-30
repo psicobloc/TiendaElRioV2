@@ -108,7 +108,18 @@ function ChangeCatList() {
               </div>
             </div>
             <div class="col-md-4">
-              <a class="btn btn-primary btn-round"> Agregar </a>
+              <a onclick="add()" class="btn btn-primary btn-round"> Agregar </a>
+
+              <script type="text/javascript">
+
+                function add() {
+                  var e = document.getElementById("select_productos");
+                  var result = e.options[e.selectedIndex].value;
+                  alert(result);
+                }
+
+              </script>
+
            </div>
           </div>
           <button type="submit" class="btn btn-primary pull-right">Terminar venta</button>
