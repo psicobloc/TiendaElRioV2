@@ -32,13 +32,9 @@ Route::get('/prod', function () {
 });
 
 Route::get('/historial', function () {
-    $productos = \App\Producto::all();
     $categorias = \App\Categoria::all();
 
-
-
-
-    return view('historial',  ['productos' => $productos], ['categorias' => $categorias]);
+    return view('historial', ['categorias' => $categorias]);
 });
 
 Route::group(['prefix' => 'admin'], function () {

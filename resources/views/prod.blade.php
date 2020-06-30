@@ -2,6 +2,7 @@
 @extends('layouts.mainlayout')
 @section('content')
 <?php use Illuminate\Support\Facades\Auth; ?>
+<body class="dark-edition">
 <div class="container-fluid">
 <div class="row">
 <div class="col-md-12">
@@ -77,4 +78,5 @@
 </div>
 </div>
 </div>
+</body>
 @endsection

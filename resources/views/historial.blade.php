@@ -15,179 +15,63 @@ try {
 <div class="container-fluid">
 <div class="row">
 <div class="col-md-12">
-<div class="card">
-  <div class="card-header card-header-primary">
-    <h4 class="card-title ">Todos los productos:</h4>
-    <p class="card-category"> Lista con el nombre y el precio de todos los productos de la tienda</p>
-  </div>
-  <div class="card-body">
-    <div class="table-responsive">
-      <table class="table">
 
-<?php
-  if ($user_id < 4):
-echo "<thead class=" . "text-primary" . ">
-    <tr><th>
-      Stock
-    </th>
-    <th>
-      Nombre
-    </th>
-    <th>
-      Categoría
-    </th>
-    <th>
-      precio
-    </th>
-  </tr></thead>
-    <tbody>";
-    ?>
 
-  <?php
+<?php if ($user_id < 4):
+
   $users = \App\User::all();
   $ordenes = \App\Ordene::all();
   $ordenes_prod = \App\OrdenesProducto::all();
-  echo "usuarioID " . $users[0]->id ;
-  echo "ordenID" . $ordenes[0]->id ;
-  echo "orden_prodID " . $ordenes_prod[0]->id ;
+  $productos = \App\Producto::all();
+  $arrayProd = (array)$productos;
 
   foreach ($users as $user) {
-    // echo "usuarioID " . $user->id ;
+    echo "<div class=\"card\">" . "<div class=\"card-header card-header-primary\">" . "<h4 class=\"card-title\"> " . $user->name . "</h4>";
+    echo "<p class=\"card-category\"> ventas por usuario</p>" . "</div>" . "<div class=\"card-body\">";
+    echo "  <div class=\"table-responsive\">" . "<table class=\"table\">";
 
     foreach ($ordenes as $orden) {
-      // echo "ordenID" . $orden->id ;
+      if ($orden->id_usuario == $user->id) {
+        echo "<p class=\"text-success\"> Orden: " . $orden->id . " Usuario " . $orden->id_usuario . " Total: $" . $orden->total . "  Fecha: " . $orden->fecha . "</p>" ;
+        echo "<thead class=" . "text-primary" . ">
+            <tr><th>
+              ID producto
+            </th>
+            <th>
+              Nombre
+            </th>
+            <th>
+              Precio
+            </th>
+            <th>
+              Cantidad
+            </th>
+          </tr></thead>
+            <tbody>";
 
       foreach ($ordenes_prod as $ordenP) {
-        // echo "orden_prodID " . $ordenP->id ;
-
-
+        if ($ordenP->id_orden == $orden->id ) {
+          foreach ($productos as $prod) {
+            if ($ordenP->id_producto == $prod->id) {
+              echo "<tr><td>" . $prod->id . "</td><td>" . $prod->nombre . "</td><td>$ " . $prod->precio . "</td><td>" . $ordenP->cantidad . "</td></tr>";
+            }
+          }
+        }
       }
     }
+      ///imprimir una division en la tabla (fila vacia?)
+    }
+echo "</tbody> </table>
+</div>
+</div>
+</div>";
   }
-
-
-
-
-
-
-
-
-
-
   ?>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      @foreach ($productos as $producto)
-
-
-            <tr>
-              <td>
-                {{$producto->stock}}
-              </td>
-              <td>
-                {{$producto->nombre}}
-              </td>
-              <td>
-                {{$categorias[$producto->id_categoria - 1]->nombre_categoria}}
-                <!-- {{$producto->id_categoria}} -->
-              </td>
-              <td class="text-primary">
-                $ {{$producto->precio}}
-              </td>
-            </tr>
-
-
-
-    @endforeach
-
-
-
-
-
-
-
-
-
-
-
-
-
-<script type="text/javascript">
-alert('hola');
-var mysql = require('mysql');
-
-var con = mysql.createConnection({
-  host: "127.0.0.1",
-  user: "vendedor",
-  password: "okboomer"
-  database: "tienda"
-});
-
-con.connect(function(err) {
-  if (err) throw err;
-  console.log("Connected!");
-
-  con.query("SELECT * FROM productos", function (err, result, fields) {
-   if (err) throw err;
-   console.log(result);
-  alert(result);
-
- });
-
-
-
-
-});
-
-</script>
-
-
-
-</tbody>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+</div>
+</div>
+</div>
+</body>
 
 <?php else: ?>
 
