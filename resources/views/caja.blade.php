@@ -33,6 +33,7 @@ var totalVenta = 0;
 <body class="dark-edition">
 <div class="col-md-8">
   <form action="/submit" method="post">
+    @csrf
 
     <div class="card">
       <div class="card-header card-header-primary">
@@ -70,6 +71,10 @@ var totalVenta = 0;
               <a onclick="add()" class="btn btn-primary btn-round"> Agregar </a>
               <a class="btn btn-primary btn-round" style="background-color:#394cb7; margin-left: 70px" href="/caja"> limpiar </a>
 
+
+    <meta name="csrf-token" content="{!! csrf_token() !!}">
+
+
               <script type="text/javascript">
               var arregloVenta = [];
               var contadorProd = 0;
@@ -95,7 +100,7 @@ var totalVenta = 0;
 
                   contadorProd = contadorProd +1;
 
-                  var seleccionArr = [idProductoSel,cantidadSel,totalSelected];
+                  var seleccionArr = [user_id,idProductoSel,cantidadSel,totalSelected];
 
                   arregloVenta.push(seleccionArr);
 
@@ -110,6 +115,27 @@ var totalVenta = 0;
                 function cargar(){
 
                   // mandar arregloVenta a php y desde ahí modificar la BD
+
+                  $.ajax({
+
+                    url     : 'http://34.68.116.225/cargar',
+                    method    : 'POST',
+                    data :{
+                      "_token": $('meta[name="csrf-token"]').attr('content'),
+                      "nombre":"hola"
+                    },
+                    success   : function(response)
+                    {
+                    alert("data sent response is "+response);
+                    },
+                    error : function(e)
+                    {
+                    alert("data not sent" + e.responseText)
+                    }
+
+
+
+                  });//ajax
 
 
 

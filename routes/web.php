@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,3 +41,13 @@ Route::get('/historial', function () {
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
+
+Route::get('/cargar', function () {
+    return view('cargar');
+});
+
+Route::post('/cargar' ,function(Request $request){
+
+  return redirect('/');
+
+  });
