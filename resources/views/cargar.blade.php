@@ -1,26 +1,21 @@
 <?php
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
+try {
+  $user_id = auth()->user()->role->id;
 
-$data = $request->all();
+} catch (Exception $e) {
 
-foreach ($data as $key ) {
-  foreach ($key as $k) {
-    echo "  k:  " . $k;
-    // code...
-  }
-
-
-
-
-
-  //echo "key: " . $key[3];
-  // code...
+  $user_id = 1000;
 }
 
 
+//Log::info('Usuario/a: ' . auth()->user()->id . ' editó ' . $data);
+//use Illuminate\Support\Facades\Log;
 
 
-
+$data = $request->all();
 
 
 $servername = "localhost";
@@ -29,7 +24,7 @@ $password = "okboomer";
 $dbname = "tienda";
 
 //$data = json_decode(file_get_contents('php://input'), true);
-$data = json_decode($_POST["venta"]);
+//$data = json_decode($_POST["venta"]);
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -78,7 +73,7 @@ if ($result) {
 
       if ($result) {
 
-        //echo "Producto actualizado!\n";
+        echo "Producto actualizado!\n";
 
       } else {
 

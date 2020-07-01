@@ -49,7 +49,7 @@ var totalVenta = 0;
                 Producto:
                 <select id="select_productos" class="form-control @error('select_productos') is-invalid @enderror" name="select_productos" value="{{ old('select_productos') }}">
                   @foreach ($productos as $producto)
-                  <option value='{{$producto->id}},{{$producto->precio}}'>{{$producto->nombre}}</option>
+                  <option value='{{$producto->id}},{{$producto->precio}},{{$producto->stock}}'>{{$producto->nombre}}</option>
                   @endforeach
 
                 </select>
@@ -89,10 +89,18 @@ var totalVenta = 0;
                   var textResult = e.options[e.selectedIndex].text;
                   var idProductoSel = parseInt(e.options[e.selectedIndex].value.split(',')[0]);
                   var selectedPrice = e.options[e.selectedIndex].value.split(',')[1];
+                  var selectedStock = e.options[e.selectedIndex].value.split(',')[2];
                   var totalSelected = cantidadSel * selectedPrice;
 
                   totalVenta += totalSelected;
                   document.getElementById("total").innerHTML = totalVenta;
+
+                  if (cantidadSel > selectedStock) {
+                    var oldCant = cantidadSel;
+                    cantidadSel = selectedStock;
+                    alert("No hay existencias suficientes para completar el pedido  \n valor máximo: " +selectedStock + " Valor elegido: " + oldCant + " valor final: " + selectedStock);
+
+                  }
 
                   var registroVenta =  " - " + textResult + " - " + " cantidad: " + cantidadSel + " - " + "Precio: $" + selectedPrice +  " - " + "total: $" + totalSelected;
                   // var mydiv = document.getElementById("listaP");
@@ -121,7 +129,7 @@ var totalVenta = 0;
 
                   console.log("TERMINANDO VENTA");
 
-                  var params = "venta=" + JSON.stringify(arregloVenta);
+                  var params = JSON.stringify(arregloVenta);
 
                   console.log(params);
 
@@ -129,7 +137,7 @@ var totalVenta = 0;
                   var token = document.querySelector('meta[name="csrf-token"]').content;
                   const url='http://34.68.116.225/cargar';
                   Http.open("POST", url);
-                  Http.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+                  Http.setRequestHeader('Content-Type', 'application/json');
                   Http.setRequestHeader('X-CSRF-TOKEN', token);
                   Http.send(params);
 
