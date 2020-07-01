@@ -42,12 +42,12 @@ Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
 
-Route::get('/cargar', function () {
-    return view('cargar');
-});
+// Route::get('/cargar', function () {
+//     return view('cargar');
+// });
 
 Route::post('/cargar' ,function(Request $request){
 
-  return redirect('/');
+  return view('cargar', ['request' => $request]);
 
   });

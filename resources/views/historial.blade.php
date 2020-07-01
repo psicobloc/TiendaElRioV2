@@ -32,8 +32,8 @@ try {
 
     foreach ($ordenes as $orden) {
       if ($orden->id_usuario == $user->id) {
-        echo "<p class=\"text-success\"> Orden: " . $orden->id . " Usuario " . $orden->id_usuario . " Total: $" . $orden->total . "  Fecha: " . $orden->fecha . "</p>" ;
-        echo "<thead class=" . "text-primary" . ">
+        // echo "<p class=\"text-success\"> Orden: " . $orden->id . " Usuario " . $orden->id_usuario . " Total: $" . $orden->total . "  Fecha: " . $orden->fecha . "</p>" ;
+        echo "<thead class=" . "text-primary" .">
             <tr><th>
               ID producto
             </th>
@@ -48,6 +48,8 @@ try {
             </th>
           </tr></thead>
             <tbody>";
+
+
 
       foreach ($ordenes_prod as $ordenP) {
         if ($ordenP->id_orden == $orden->id ) {

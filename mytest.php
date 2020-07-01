@@ -1,35 +1,11 @@
 <?php
 
-
-$data = $request->all();
-
-foreach ($data as $key ) {
-  foreach ($key as $k) {
-    echo "  k:  " . $k;
-    // code...
-  }
-
-
-
-
-
-  //echo "key: " . $key[3];
-  // code...
-}
-
-
-
-
-
-
-
 $servername = "localhost";
 $username = "vendedor";
 $password = "okboomer";
 $dbname = "tienda";
 
-//$data = json_decode(file_get_contents('php://input'), true);
-$data = json_decode($_POST["venta"]);
+//$json = json_decode(file_get_contents('php://input'), true);
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -38,8 +14,8 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
-//$json = '[[1,2,1,9.5],[1,3,1,50],[1,4,1,360]]';
-//$data = json_decode($json);
+$json = '[[1,2,1,9.5],[1,3,1,50],[1,4,1,360]]';
+$data = json_decode($json);
 $total = 0;
 $fecha = date('Y-m-d');
 $timestamp = date('Y-m-d H:i:s');
@@ -48,7 +24,7 @@ foreach ($data as $prod) {
   $total = $total + ($prod[2] * $prod[3]);
 }
 
-//echo $total;
+echo $total;
 
 $sql = "INSERT INTO ordenes (`id_usuario`,`status`, `fecha`, `total`) VALUES ({$data[0][0]}, 'Pagada', '{$fecha}', {$total})";
 
@@ -56,7 +32,7 @@ $result = $conn->query($sql);
 
 if ($result) {
 
-  //echo "Orden Creada!\n";
+  echo "Orden Creada!\n";
 
   $orden = $conn->insert_id;
 
@@ -70,7 +46,7 @@ if ($result) {
 
     if ($result) {
 
-      //echo "Orden_producto insertado!\n";
+      echo "Orden_producto insertado!\n";
 
       $sql = "UPDATE productos SET stock = stock - {$prod[2]} WHERE id = {$prod[1]}";
 
@@ -78,24 +54,24 @@ if ($result) {
 
       if ($result) {
 
-        //echo "Producto actualizado!\n";
+        echo "Producto actualizado!\n";
 
       } else {
 
-        //echo "Error al actualizar producto\n";
-        //echo "Error: " . $sql . "<br>" . $conn->error;
+        echo "Error al actualizar producto\n";
+        echo "Error: " . $sql . "<br>" . $conn->error;
 
       }
 
     } else {
-      //echo "Error al insertar orden_producto\n";
-      //echo "Error: " . $sql . "<br>" . $conn->error;
+      echo "Error al insertar orden_producto\n";
+      echo "Error: " . $sql . "<br>" . $conn->error;
     }
 
   }
 
 } else {
-  //echo "Error: " . $sql . "<br>" . $conn->error;
+  echo "Error: " . $sql . "<br>" . $conn->error;
 }
 
 

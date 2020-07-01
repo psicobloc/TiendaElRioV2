@@ -72,7 +72,7 @@ var totalVenta = 0;
               <a class="btn btn-primary btn-round" style="background-color:#394cb7; margin-left: 70px" href="/caja"> limpiar </a>
 
 
-    <meta name="csrf-token" content="{!! csrf_token() !!}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
 
               <script type="text/javascript">
@@ -82,12 +82,12 @@ var totalVenta = 0;
                 function add() {
                   var e = document.getElementById("select_productos");
                   var cant = document.getElementById("cantidad");
-                  var cantidadSel = cant.value;
+                  var cantidadSel = parseInt(cant.value);
                   if (cant.value <1) {
                     cantidadSel = 1;
                   }
                   var textResult = e.options[e.selectedIndex].text;
-                  var idProductoSel = e.options[e.selectedIndex].value.split(',')[0];
+                  var idProductoSel = parseInt(e.options[e.selectedIndex].value.split(',')[0]);
                   var selectedPrice = e.options[e.selectedIndex].value.split(',')[1];
                   var totalSelected = cantidadSel * selectedPrice;
 
@@ -103,11 +103,14 @@ var totalVenta = 0;
                   var seleccionArr = [user_id,idProductoSel,cantidadSel,totalSelected];
 
                   arregloVenta.push(seleccionArr);
+                  console.log(JSON.stringify(arregloVenta));
 
                   var newpara = document.createElement("P");
                   newpara.innerHTML = registroVenta;
                   document.getElementById("listaP").appendChild(newpara);
                   mydiv.appendChild(newpara);
+
+
 
                 }//add()
 
@@ -116,26 +119,27 @@ var totalVenta = 0;
 
                   // mandar arregloVenta a php y desde ahí modificar la BD
 
-                  $.ajax({
+                  console.log("TERMINANDO VENTA");
 
-                    url     : 'http://34.68.116.225/cargar',
-                    method    : 'POST',
-                    data :{
-                      "_token": $('meta[name="csrf-token"]').attr('content'),
-                      "nombre":"hola"
-                    },
-                    success   : function(response)
-                    {
-                    alert("data sent response is "+response);
-                    },
-                    error : function(e)
-                    {
-                    alert("data not sent" + e.responseText)
-                    }
+                  var params = "venta=" + JSON.stringify(arregloVenta);
+
+                  console.log(params);
+
+                  const Http = new XMLHttpRequest();
+                  var token = document.querySelector('meta[name="csrf-token"]').content;
+                  const url='http://34.68.116.225/cargar';
+                  Http.open("POST", url);
+                  Http.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+                  Http.setRequestHeader('X-CSRF-TOKEN', token);
+                  Http.send(params);
+
+                  Http.onreadystatechange = (e) => {
+                    console.log(e);
+                  }
 
 
 
-                  });//ajax
+                  }//ajax
 
 
 
@@ -167,7 +171,7 @@ var totalVenta = 0;
 
 
 
-                }//cargar()
+                //cargar()
 
               </script>
 
