@@ -153,6 +153,9 @@ var totalVenta = 0;
                   }
                 //  document.location.href = "/historial";
                 // window.location.replace("http://34.68.116.225/historial");
+
+
+
                 document.getElementById("terminarbtn").style.display="none";
                 alert("¡Venta realizada con exito!\n\npuedes consultar todas las ventas en la pestaña de historial");
                   }//ajax
@@ -179,29 +182,6 @@ var totalVenta = 0;
 </div>
 
 </body>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
           <?php else: ?>
             <script language="javascript">

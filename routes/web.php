@@ -38,6 +38,11 @@ Route::get('/historial', function () {
     return view('historial', ['categorias' => $categorias]);
 });
 
+Route::get('/tickets', function () {
+
+    return view('tickets');
+});
+
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
