@@ -1,6 +1,6 @@
-Tienda El Rio
+# Tienda El Rio
 
-Por Hugo Valencia y Martín Torres.
+### Por Hugo Valencia y Martín Torres.
 
 Descripción del proyecto:
 EL siguiente proyecto consta de dos partes:
@@ -19,6 +19,30 @@ para pedir una mandar un correo a valenciavhugo@gmail.com
 
 - _Para completar la instalación, además de laravel (PHP, MySQL, ETC.) es necesario instalar el paquete "voyager" https://voyager-docs.devdojo.com/getting-started/installation
 
-Log - en Tools->Compass->Registros
+**Log** - en Tools->Compass->Registros
 
 ![](https://raw.githubusercontent.com/psicobloc/TiendaElRioV2/master/README_images/Screenshot%20from%202020-07-01%2021-57-14.png)
+
+**Roles**
+
+![](https://raw.githubusercontent.com/psicobloc/TiendaElRioV2/master/README_images/Screenshot%20from%202020-07-01%2022-19-59.png)
+
+**Hacer una venta**
+
+![](https://raw.githubusercontent.com/psicobloc/TiendaElRioV2/master/README_images/Screenshot%20from%202020-07-01%2021-59-22.png)
+
+**Mostrar productos e inventario**
+
+![](https://raw.githubusercontent.com/psicobloc/TiendaElRioV2/master/README_images/Screenshot%20from%202020-07-01%2022-00-01.png)
+
+**Crear productos**
+
+![](https://raw.githubusercontent.com/psicobloc/TiendaElRioV2/master/README_images/Screenshot%20from%202020-07-01%2021-57-43.png)
+
+**Ver historial de ventas por usuario**
+
+![](https://raw.githubusercontent.com/psicobloc/TiendaElRioV2/master/README_images/Screenshot%20from%202020-07-01%2022-00-38.png)
+
+
+
+
