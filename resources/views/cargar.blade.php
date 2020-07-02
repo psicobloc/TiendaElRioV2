@@ -45,7 +45,7 @@ foreach ($data as $prod) {
 
 //echo $total;
 
-$sql = "INSERT INTO ordenes (`id_usuario`,`status`, `fecha`, `total`) VALUES ({$data[0][0]}, 'Pagada', '{$fecha}', {$total})";
+$sql = "INSERT INTO ordenes (`id_usuario`,`status`, `fecha`, `created_at`, `total`) VALUES ({$data[0][0]}, 'Pagada', '{$fecha}', '{$timestamp}', {$total})";
 
 $result = $conn->query($sql);
 
