@@ -27,7 +27,11 @@ try {
   $productos = \App\Producto::all();
   $arrayProd = (array)$productos;
 
-  $html = "<body class=\"dark-edition\"><div class=\"container-fluid\"><div class=\"row\"><div class=\"col-md-12\">";
+  
+
+  $html = "<link href=\"material-dashboard.css?v=2.1.0\" rel=\"stylesheet\" />";
+  $html = $html . " <link rel=\"stylesheet\" type=\"text/css\" href=\"https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons\" />";
+  $html = $html . "<body class=\"dark-edition\"><div class=\"container-fluid\"><div class=\"row\"><div class=\"col-md-12\">";
 
 
 $idOrdenSelected = 24; //variable con la seleccion
@@ -120,7 +124,7 @@ $html = $html . "</div>
 
 $mpdf = new \Mpdf\Mpdf();
 $mpdf->WriteHTML($html);
-$mpdf->Output('prueba.pdf');
+$mpdf->Output('ticket.pdf', "D");
 
   ?>
 

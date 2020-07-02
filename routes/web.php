@@ -38,11 +38,6 @@ Route::get('/historial', function () {
     return view('historial', ['categorias' => $categorias]);
 });
 
-Route::get('/tickets', function () {
-
-    return view('tickets');
-});
-
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
@@ -55,4 +50,10 @@ Route::post('/cargar' ,function(Request $request){
 
   return view('cargar', ['request' => $request]);
 
+  });
+
+
+  Route::post('/tickets', function (Request $request) {
+
+      return view('tickets', ['request' => $request]);
   });
