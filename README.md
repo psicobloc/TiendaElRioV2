@@ -18,3 +18,7 @@ donde esta siendo servida la página web, en la URL: http://34.68.116.225/ y htt
 para pedir una mandar un correo a valenciavhugo@gmail.com
 
 - _Para completar la instalación, además de laravel (PHP, MySQL, ETC.) es necesario instalar el paquete "voyager" https://voyager-docs.devdojo.com/getting-started/installation
+
+Log - en Tools->Compass->Registros
+
+![](https://raw.githubusercontent.com/psicobloc/TiendaElRioV2/master/README_images/Screenshot%20from%202020-07-01%2021-57-14.png)
