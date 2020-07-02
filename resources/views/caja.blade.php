@@ -90,17 +90,27 @@ var totalVenta = 0;
                   var idProductoSel = parseInt(e.options[e.selectedIndex].value.split(',')[0]);
                   var selectedPrice = e.options[e.selectedIndex].value.split(',')[1];
                   var selectedStock = e.options[e.selectedIndex].value.split(',')[2];
-                  var totalSelected = cantidadSel * selectedPrice;
-
-                  totalVenta += totalSelected;
-                  document.getElementById("total").innerHTML = totalVenta;
+                  // var totalSelected = cantidadSel * selectedPrice;
+                  //
+                  // totalVenta += totalSelected;
+                  // document.getElementById("total").innerHTML = totalVenta;
 
                   if (cantidadSel > selectedStock) {
                     var oldCant = cantidadSel;
                     cantidadSel = selectedStock;
-                    alert("No hay existencias suficientes para completar el pedido  \n valor máximo: " +selectedStock + " Valor elegido: " + oldCant + " valor final: " + selectedStock);
 
+                    if (selectedStock <1) {
+                      cantidadSel = 0;
+                    }else {
+                      cantidadSel = selectedStock;
+                    }
+                    alert("No hay existencias suficientes para completar el pedido  \n valor máximo: " +selectedStock + " Valor elegido: " + oldCant + " valor final: " + selectedStock);
                   }
+
+                  var totalSelected = cantidadSel * selectedPrice;
+
+                  totalVenta += totalSelected;
+                  document.getElementById("total").innerHTML = totalVenta;
 
                   var registroVenta =  " - " + textResult + " - " + " cantidad: " + cantidadSel + " - " + "Precio: $" + selectedPrice +  " - " + "total: $" + totalSelected;
                   // var mydiv = document.getElementById("listaP");
@@ -115,21 +125,15 @@ var totalVenta = 0;
                   //document.querySelector('#select_productos option[value=' + e.options[e.selectedIndex].value + ']').remove();
                   e.options[e.selectedIndex].remove();
 
-
                   var newpara = document.createElement("P");
                   newpara.innerHTML = registroVenta;
                   document.getElementById("listaP").appendChild(newpara);
                   mydiv.appendChild(newpara);
 
-
-
                 }//add()
 
 
                 function cargar(){
-
-                  // mandar arregloVenta a php y desde ahí modificar la BD
-
                   console.log("TERMINANDO VENTA");
 
                   var params = JSON.stringify(arregloVenta);
@@ -147,42 +151,11 @@ var totalVenta = 0;
                   Http.onreadystatechange = (e) => {
                     console.log(e);
                   }
-
-
-
+                //  document.location.href = "/historial";
+                // window.location.replace("http://34.68.116.225/historial");
+                document.getElementById("terminarbtn").style.display="none";
+                alert("¡Venta realizada con exito!\n\npuedes consultar todas las ventas en la pestaña de historial");
                   }//ajax
-
-
-
-
-
-                  //*************** esto es node.js, server side, no funciona en javascript
-                  // var mysql = require('mysql');
-                  //
-                  // var con = mysql.createConnection({
-                  //   host: "217.0.0.1",
-                  //   port:"3306",
-                  //   user: "vendedor",
-                  //   password: "okboomer",
-                  //   database: "tienda"
-                  // });
-                  //
-                  // con.connect(function(err) {
-                  //   if (err) throw err;
-                  //   console.log("Connected!");
-                  //   var sql = "INSERT INTO tablapruebas (id_prod, id_usuario, precio_prod, cantidad_prod, total) VALUES (2,1,9.5,2,19)";
-                  //   con.query(sql, function (err, result) {
-                  //     if (err) throw err;
-                  //     console.log("1 record inserted");
-                  //   });
-                  // });
-
-
-
-
-
-
-                //cargar()
 
               </script>
 
@@ -194,7 +167,7 @@ var totalVenta = 0;
               </blockquote>
             </div>
           <a class="text-warning">  Total:$  </a><?php   echo "<a id=\"total\" class=\"text-info\"> </a>" ; ?>
-          <a class="btn btn-primary" style="background-color:#4fb739; margin-left: 750px" onclick="cargar()"> Terminar venta </a>
+          <a class="btn btn-primary" style="background-color:#4fb739; margin-left: 750px" onclick="cargar()" id="terminarbtn"> Terminar venta </a>
           <!-- <button type="submit" class="btn btn-primary pull-right" onclick="cargar()">Terminar venta</button> -->
           <div class="clearfix"></div>
         </form>

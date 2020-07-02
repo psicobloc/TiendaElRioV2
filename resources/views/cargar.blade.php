@@ -40,7 +40,7 @@ $fecha = date('Y-m-d');
 $timestamp = date('Y-m-d H:i:s');
 
 foreach ($data as $prod) {
-  $total = $total + ($prod[2] * $prod[3]);
+  $total = $total +  $prod[3];
 }
 
 //echo $total;
