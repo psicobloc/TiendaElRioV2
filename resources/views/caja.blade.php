@@ -112,6 +112,9 @@ var totalVenta = 0;
 
                   arregloVenta.push(seleccionArr);
                   console.log(JSON.stringify(arregloVenta));
+                  //document.querySelector('#select_productos option[value=' + e.options[e.selectedIndex].value + ']').remove();
+                  e.options[e.selectedIndex].remove();
+
 
                   var newpara = document.createElement("P");
                   newpara.innerHTML = registroVenta;

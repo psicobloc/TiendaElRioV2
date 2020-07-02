@@ -48,6 +48,7 @@ try {
             </th>
           </tr></thead>
             <tbody>";
+            // echo "<tr><td>" . " ID orden: " . $orden->id . "</td><td>" . "Total: " . "</td><td>$ " . $orden->total . "</td><td>" . $orden->fecha . "</td></tr>";
 
 
 
@@ -60,6 +61,8 @@ try {
           }
         }
       }
+      echo "<tr><td class=\"text-primary\" >" . " ID orden: " . $orden->id . "</td><td class=\"text-warning\" >" . "Total: $ ". $orden->total . "</td><td class=\"text-info\" > " . "Fecha: " . $orden->fecha . "</td><td>" . "</td></tr>";
+
     }
       ///imprimir una division en la tabla (fila vacia?)
     }

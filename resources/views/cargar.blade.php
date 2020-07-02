@@ -55,6 +55,8 @@ if ($result) {
 
   $orden = $conn->insert_id;
 
+  Log::info('Usuario/a: ' . $data[0][0] . ' creó una nueva venta con id: ' . $orden);
+
   foreach ($data as $prod) {
     // code...
     //echo $prod[2];
