@@ -43,6 +43,9 @@ para pedir una mandar un correo a valenciavhugo@gmail.com
 
 ![](https://raw.githubusercontent.com/psicobloc/TiendaElRioV2/master/README_images/Screenshot%20from%202020-07-01%2022-00-38.png)
 
-
+**Crear e imprimir tickets**
+![](https://raw.githubusercontent.com/psicobloc/TiendaElRioV2/master/README_images/viewImpresion.png)
+![](https://raw.githubusercontent.com/psicobloc/TiendaElRioV2/master/README_images/imprimir%20tickets.png)
+![](https://raw.githubusercontent.com/psicobloc/TiendaElRioV2/master/README_images/ticketMuestra.png)
 
 
