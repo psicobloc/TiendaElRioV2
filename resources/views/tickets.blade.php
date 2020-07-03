@@ -21,20 +21,22 @@ try {
 
 <?php if ($user_id < 4):
 
+  $data = $request->all();
+
   $users = \App\User::all();
   $ordenes = \App\Ordene::all();
   $ordenes_prod = \App\OrdenesProducto::all();
   $productos = \App\Producto::all();
   $arrayProd = (array)$productos;
 
-  
+
 
   $html = "<link href=\"material-dashboard.css?v=2.1.0\" rel=\"stylesheet\" />";
   $html = $html . " <link rel=\"stylesheet\" type=\"text/css\" href=\"https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons\" />";
   $html = $html . "<body class=\"dark-edition\"><div class=\"container-fluid\"><div class=\"row\"><div class=\"col-md-12\">";
 
 
-$idOrdenSelected = 24; //variable con la seleccion
+$idOrdenSelected = $data[0]; //variable con la seleccion
 
 foreach ($ordenes as $key ) {
    if ($key->id == $idOrdenSelected) {

@@ -35,12 +35,12 @@
               <p>Historial de ventas</p>
             </a>
           </li>
-          <!-- <li class="nav-item ">
-            <a class="nav-link" href="javascript:void(0)">
+          <li class="nav-item ">
+            <a class="nav-link" href="{{ url('/crearticket') }}">
               <i class="material-icons">print</i>
               <p>Tickets</p>
             </a>
-          </li> -->
+          </li>
 
 
         </ul>

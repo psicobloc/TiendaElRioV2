@@ -38,12 +38,24 @@ Route::get('/historial', function () {
     return view('historial', ['categorias' => $categorias]);
 });
 
+Route::get('/crearticket', function () {
+    $ordenes = \App\Ordene::all();
+
+    return view('crearticket', ['ordenes' => $ordenes]);
+});
+
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
 
 // Route::get('/cargar', function () {
 //     return view('cargar');
+// });
+
+// Route::get('/tickets', function (Request $request) {
+//
+//
+//     return view('crearticket', ['request' => $request]);
 // });
 
 Route::post('/cargar' ,function(Request $request){
@@ -53,7 +65,7 @@ Route::post('/cargar' ,function(Request $request){
   });
 
 
-  Route::post('/tickets', function (Request $request) {
-
-      return view('tickets', ['request' => $request]);
-  });
+  // Route::post('/tickets', function (Request $request) {
+  //
+  //     return view('tickets', ['request' => $request]);
+  // });
